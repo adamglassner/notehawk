@@ -49,7 +49,7 @@ public sealed class NotesView : UserControl
 
     // ===== Section tabs (OneNote) =====
 
-    private UIElement BuildTabBar()
+    private FrameworkElement BuildTabBar()
     {
         var bar = new Border { BorderThickness = new Thickness(0, 0, 0, 1), Padding = new Thickness(20, 12, 20, 0) };
         bar.SetResourceReference(Border.BackgroundProperty, "Brush.Bg");
@@ -96,7 +96,7 @@ public sealed class NotesView : UserControl
         _tabs.Children.Add(add);
     }
 
-    private UIElement SectionTab(Section section)
+    private FrameworkElement SectionTab(Section section)
     {
         bool selected = section == Section;
         var tab = new Border
@@ -124,7 +124,7 @@ public sealed class NotesView : UserControl
 
     // ===== Note list (Evernote) =====
 
-    private UIElement BuildListPane()
+    private FrameworkElement BuildListPane()
     {
         var pane = new Border { BorderThickness = new Thickness(0, 0, 1, 0) };
         pane.SetResourceReference(Border.BackgroundProperty, "Brush.Surface");
@@ -165,7 +165,7 @@ public sealed class NotesView : UserControl
             _list.Children.Add(NoteCard(note));
     }
 
-    private UIElement NoteCard(Note note)
+    private FrameworkElement NoteCard(Note note)
     {
         bool selected = note == Current;
         var card = new Border { CornerRadius = new CornerRadius(12), Padding = new Thickness(14, 12, 14, 12), Margin = new Thickness(0, 0, 0, 4), Cursor = Cursors.Hand, BorderThickness = new Thickness(1) };
@@ -209,7 +209,7 @@ public sealed class NotesView : UserControl
 
     // ===== Editor =====
 
-    private UIElement BuildEditor()
+    private FrameworkElement BuildEditor()
     {
         var dock = new DockPanel();
         dock.SetResourceReference(Panel.BackgroundProperty, "Brush.Paper");
@@ -252,7 +252,7 @@ public sealed class NotesView : UserControl
         return dock;
     }
 
-    private UIElement BuildFormatBar()
+    private FrameworkElement BuildFormatBar()
     {
         var bar = new Border { CornerRadius = new CornerRadius(12), BorderThickness = new Thickness(1), Padding = new Thickness(6, 3, 6, 3), Margin = new Thickness(20, 0, 20, 6) };
         bar.SetResourceReference(Border.BackgroundProperty, "Brush.Surface");
@@ -374,7 +374,7 @@ public sealed class NotesView : UserControl
         _page.Content = canvas;
     }
 
-    private static UIElement RenderBlock(Block block)
+    private static FrameworkElement RenderBlock(Block block)
     {
         switch (block.Kind)
         {

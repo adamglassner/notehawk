@@ -47,7 +47,7 @@ public sealed class HomeView : UserControl
         Content = root;
     }
 
-    private static UIElement Hero()
+    private static FrameworkElement Hero()
     {
         var hero = new Border { CornerRadius = new CornerRadius(18), Padding = new Thickness(30, 26, 30, 26), Margin = new Thickness(0, 0, 0, 26) };
         hero.SetResourceReference(Border.BackgroundProperty, "Brush.Hero");
@@ -101,7 +101,7 @@ public sealed class HomeView : UserControl
         return dock;
     }
 
-    private static UIElement NoteTile(Notebook book, Section section, Note note)
+    private static FrameworkElement NoteTile(Notebook book, Section section, Note note)
     {
         var sp = new StackPanel();
         var top = new DockPanel { Margin = new Thickness(0, 0, 0, 10) };
@@ -122,7 +122,7 @@ public sealed class HomeView : UserControl
         return button;
     }
 
-    private static UIElement ScratchPad()
+    private static FrameworkElement ScratchPad()
     {
         var sp = new StackPanel();
         sp.Children.Add(Ui.CardHeader(Ic.Compose, "Scratch pad", "COMING SOON", Ui.ToolButton("Turning the scratch pad into a note", Ic.NoteAdd, "Save as note")));
@@ -134,7 +134,7 @@ public sealed class HomeView : UserControl
         return Ui.Card(sp);
     }
 
-    private static UIElement Tasks()
+    private static FrameworkElement Tasks()
     {
         var sp = new StackPanel();
         sp.Children.Add(Ui.CardHeader(Ic.Task, "My tasks", "PREVIEW", new Button { Style = Ui.S("LinkButton"), Content = "View all" }
@@ -154,7 +154,7 @@ public sealed class HomeView : UserControl
         return Ui.Card(sp);
     }
 
-    private static UIElement Pinned()
+    private static FrameworkElement Pinned()
     {
         var sp = new StackPanel();
         sp.Children.Add(Ui.CardHeader(Ic.Pin, "Pinned"));
@@ -172,7 +172,7 @@ public sealed class HomeView : UserControl
         return Ui.Card(sp);
     }
 
-    private static UIElement Notebooks()
+    private static FrameworkElement Notebooks()
     {
         var sp = new StackPanel();
         sp.Children.Add(Ui.CardHeader(Ic.Notebook, "Notebooks", null, Ui.ToolButton("New notebooks", Ic.BookAdd, "New notebook")));
@@ -190,7 +190,7 @@ public sealed class HomeView : UserControl
         return Ui.Card(sp);
     }
 
-    private static UIElement Tags()
+    private static FrameworkElement Tags()
     {
         var sp = new StackPanel();
         sp.Children.Add(Ui.CardHeader(Ic.Tag, "Tags", "COMING SOON"));
