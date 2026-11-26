@@ -44,9 +44,11 @@ public partial class MainWindow : Window
     // ----- Navigation -----
 
     private string? _currentKey;
+    private bool _selecting;
 
     private void Nav_Checked(object sender, RoutedEventArgs e)
     {
+        if (_selecting) return; // GoTo is choosing the page itself
         if (sender is FrameworkElement { DataContext: ModuleInfo module } && module.Key != _currentKey)
             Show(module);
     }
@@ -55,10 +57,17 @@ public partial class MainWindow : Window
     public void GoTo(string key, bool force = false)
     {
         var module = ModuleCatalog.Find(key) ?? ModuleCatalog.Home;
-        if (module == ModuleCatalog.Settings)
-            foreach (var m in ModuleCatalog.Sidebar) m.IsSelected = false;
-        else
-            module.IsSelected = true;
+        // Selecting the sidebar item raises Nav_Checked; don't let that build the page a second time
+        // (it would use up a pending notebook/note and then show the default one).
+        _selecting = true;
+        try
+        {
+            if (module == ModuleCatalog.Settings)
+                foreach (var m in ModuleCatalog.Sidebar) m.IsSelected = false;
+            else
+                module.IsSelected = true;
+        }
+        finally { _selecting = false; }
         if (force || _currentKey != module.Key) Show(module);
     }
 
